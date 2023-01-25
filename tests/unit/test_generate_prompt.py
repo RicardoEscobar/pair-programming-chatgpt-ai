@@ -13,8 +13,9 @@ class GeneratePromptTest(unittest.TestCase):
     """Test case for generate_prompt function unit tests."""
 
     def setUp(self) -> None:
-        self.hello_world_file = open("hello_world.py", "w", encoding='utf-8')
-        self.hello_world_file.write('print("Hello world!")\n')
+        with open("hello_world.py", "w", encoding='utf-8') as file:
+            file.write('print("Hello world!")\n')
+            self.hello_world_file = Path(file.name)
         return super().setUp()
 
     def tearDown(self) -> None:
@@ -33,17 +34,11 @@ class GeneratePromptTest(unittest.TestCase):
         """Validate function generate_prompt returns the same argument"""
 
         prompt = 'Explain this code:\n'
-        text_file_path = Path(
-            'C:/Users/Jorge/git/pair-programming-chatgpt-ai/hello_world.py')
         expected = """Explain this code:
 ```python
 print("Hello world!")
 ```"""
-        actual = generate_prompt(prompt, text_file_path)
-        self.assertEqual(actual, expected)
-
-        # Assert using str instead of Path object in the text_file_path
-        text_file_path = 'C:/Users/Jorge/git/pair-programming-chatgpt-ai/hello_world.py'
+        actual = generate_prompt(prompt, self.hello_world_file)
         self.assertEqual(actual, expected)
 
 
