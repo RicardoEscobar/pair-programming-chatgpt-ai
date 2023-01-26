@@ -19,7 +19,7 @@ class GeneratePromptTest(unittest.TestCase):
         return super().setUp()
 
     def tearDown(self) -> None:
-        os.unlink(self.hello_world_file.name)
+        os.unlink(self.hello_world_file)
         return super().tearDown()
 
     def test_generate_prompt_given_an_argument_str(self):
