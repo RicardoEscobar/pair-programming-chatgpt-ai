@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Union
 
 
-def read_or_create_file(file_path: Union[str, Path], placeholder_text: str) -> str:
+def read_or_create_file(file_path: Union[str, Path], placeholder_text: str = '') -> str:
     """
     Reads the contents of a file at the provided file path. If the file does not exist, it is created with the provided
     placeholder text as its contents.
