@@ -48,6 +48,14 @@ class TestReadOrCreateFile(unittest.TestCase):
 
         self.assertEqual(actual_contents, placeholder_text)
 
+    def test_placeholder_text_is_optional(self):
+        """test that if the placeholder_text is not provided, it creates the file with an empty string"""
+        file_path = "example.txt"
+
+        actual_contents = read_or_create_file(file_path)
+
+        self.assertEqual(actual_contents, "")
+
     def tearDown(self):
         if os.path.exists("example.txt"):
             os.remove("example.txt")
